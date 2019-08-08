@@ -1,0 +1,20 @@
+<launch>
+  <arg name="id0" default="True"/>
+  <arg name="id1" default="True"/>
+  <group if="$(arg id0)">
+    <node name="forces_node" pkg="cfs_sensor" type="cfs_node"  output="screen">
+      <param name="cfs_default_device_name" value="/dev/ttyACM0"/>
+      <param name="cfs_sensor_pub_name" value="/cfs/forces0"/>
+      <param name="cfs_sensor_calib_srv_name" value="/cfs_sensor_calib0"/>
+    </node>
+  </group>
+
+  <group if="$(arg id1)">
+    <node name="forces_node_duplicate" pkg="cfs_sensor" type="cfs_node_duplicate"  output="screen">
+      <param name="cfs_default_device_name" value="/dev/ttyACM1"/>
+    <param name="cfs_sensor_pub_name" value="/cfs/forces1"/>
+    <param name="cfs_sensor_calib_srv_name" value="/cfs_sensor_calib1"/>
+    </node>
+  </group>
+
+</launch>
