@@ -12,8 +12,8 @@
 //#include "cfs_sensor/rs_comm.h"
 #include "cfs_sensor/pComResInternal.h"
 
-const char* cfs_default_device_name = "/dev/ttyACM0";
-const char* cfs_sensor_pub_name = "/cfs/forces";
+// const char* cfs_default_device_name = "/dev/ttyACM0";
+// const char* cfs_sensor_pub_name = "/cfs/forces";
 
 namespace cfs_sensor
 {
@@ -26,7 +26,8 @@ namespace cfs_sensor
     int maxmy;
     int maxmz;
   } CFS_DEVICE_RATE_VAL;
-  const CFS_DEVICE_RATE_VAL cfs_device_rate_val = {150,150,300,4,4,4};//For CFS034CA301U
+  // const CFS_DEVICE_RATE_VAL cfs_device_rate_val = {150,150,300,4,4,4};//For CFS034CA301U
+  const CFS_DEVICE_RATE_VAL cfs_device_rate_val = {100,100,200,1,1,1};//For CFS018CA201U
 
   typedef struct {
     double fx;
@@ -47,10 +48,11 @@ namespace cfs_sensor
   class CFS_Sensor_Node
   {
   public:
-    CFS_Sensor_Node (ros::NodeHandle & n);
+    CFS_Sensor_Node (ros::NodeHandle & n, ros::NodeHandle & nhp);
     ~CFS_Sensor_Node (void);
 
-    std::string cfs_device_name; //default 
+    std::string cfs_device_name; //default
+    std::string cfs_default_device_name, cfs_sensor_pub_name, cfs_sensor_calib_srv_name;
     // ServiceServerのCallbackによるキャリブレーション
     //bool start_calibration(std_srvs::Empty::Request& request, std_srvs::Empty::Response& response);
 
@@ -58,6 +60,7 @@ namespace cfs_sensor
 
   private:
     ros::NodeHandle n_;
+    ros::NodeHandle nhp_;
     ros::Publisher cfs_sensor_Pub_;
     ros::ServiceServer cfs_sensor_Svs_;
 

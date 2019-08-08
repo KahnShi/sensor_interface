@@ -30,7 +30,7 @@
 // ----------------------------------------------------------------------------------
 int main(int argc,char **argv)
 {
-  ros::init (argc, argv, "cfs_sensor_node");
+  ros::init (argc, argv, "cfs_sensor_node_duplicate");
   ros::NodeHandle n;
   ros::NodeHandle nh_private("~");
   cfs_sensor::CFS_Sensor_Node cfs_sensor_node(n, nh_private);
@@ -52,7 +52,7 @@ namespace cfs_sensor
     ROS_INFO("Starting CFS_Sensor_Node");
 
     // Get param from ros
-    nhp_.param ("cfs_default_device_name", cfs_default_device_name, std::string("/dev/ttyACM0"));
+    nhp_.param ("cfs_default_device_name", cfs_default_device_name, std::string("/dev/ttyACM1"));
     nhp_.param ("cfs_sensor_pub_name", cfs_sensor_pub_name, std::string("/cfs/forces"));
     nhp_.param ("cfs_sensor_calib_srv_name", cfs_sensor_calib_srv_name, std::string("/cfs_sensor_calib"));
 
