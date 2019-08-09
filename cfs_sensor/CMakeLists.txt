@@ -29,9 +29,11 @@ target_link_libraries(cfs_sample  ${catkin_LIBRARIES}  ${Boost_LIBRARIES})
 add_executable(cfs_node  src/node.cpp src/rs_comm.cpp)
 target_link_libraries(cfs_node  ${catkin_LIBRARIES}  ${Boost_LIBRARIES})
 
+add_executable(cfs_node_duplicate  src/node_duplicate.cpp src/rs_comm.cpp)
+target_link_libraries(cfs_node_duplicate  ${catkin_LIBRARIES}  ${Boost_LIBRARIES})
 
 
-install(TARGETS cfs_sample cfs_node
+install(TARGETS cfs_sample cfs_node cfs_node_duplicate
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
